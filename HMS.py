@@ -7,7 +7,7 @@ class Hotel:
       def Booking (self):
         while True:
               print(" *(1) for No Of Rooms Available : \n * (2)for No Of Rooms Reserved : \n * (3) for Book Your Room Now : \n * (4) for Main Menu :")
-              choice = int(input("Enter Yor Choice : \n"))
+              choice = int(input("Enter Your Choice : \n"))
               if choice == 1:
                  print(f" No Of Rooms Available : {self.room}")
               elif choice == 2:
@@ -17,11 +17,17 @@ class Hotel:
                  Number =  input("Your Contact Number : \n")
                  Rooms =  int(input("How Many Rooms To Book ?: \n"))
                  duration =  input("Stay Duration In Hours: \n")
-                 print(f"Your Room is booked \n Your Name : {Name}, \n Your Number : {Number}, \n Rooms : {Rooms}, \n Stay Duration : {duration} , Have a Nice Day .... ")
-                 self.room = self.room - Rooms
-                 self.reserved = self.reserved + Rooms
-                 with open('log.txt','a') as f:
-                   f.write(f" Name = {Name},\n Contact-Number = {Number},\n Rooms = {Rooms},\n Stay-Duration = {duration} \n") 
+                 if self.room >= Rooms:
+                    print(f"Your Room is booked \n Your Name : {Name}, \n Your Contact Number : {Number}, \n Rooms : {Rooms}, \n Stay Duration : {duration} , Have a Nice Day .... ")
+                    self.room = self.room - Rooms
+                    self.reserved = self.reserved + Rooms
+                    with open('log.txt','a') as f:
+                         f.write(f" Name = {Name},\n Contact-Number = {Number},\n Rooms = {Rooms},\n Stay-Duration = {duration} \n")
+                 elif self.reserved > Rooms:
+                    print(" Sorry ! Rooms Are Full :")
+                 else:
+                    print("Room Limit Exceeded")
+
               elif choice == 4:
                   return None
               else:
